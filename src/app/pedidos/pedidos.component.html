@@ -1,0 +1,85 @@
+<div class="card border-primary mb-3  ">
+    <div class="card-header">Pedidos </div>
+    <div class="card-body text-primary table-wrap">
+      <div *ngIf="facturas?.length == 0" class="alert alert-info">
+        No hay registros en la base de datos!
+      </div>
+      <table class="table table-bordered table-striped table-wrap " *ngIf="facturas?.length>0">
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Descripción</th>
+                <th>Pedido</th>
+                <th class="col-2" style="padding:0% ; width: fit-content; ">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let factura of facturas">
+                <td>
+                    <div class="d-flex align-items-center" >
+                        <div class="ms-3" >
+                            <p class="fw-bold mb-1">{{ factura.cliente.nombre }}   {{ factura.cliente.apellido }} </p>
+                            <p class="text-muted mb-0">{{ factura.cliente.identificacion }}</p>
+                          </div>
+                    </div>
+                      
+                </td>
+                <td class="ms-3 align-middle" >
+
+                    <p class="fw-normal mb-1">{{ factura.descripcion }}</p>
+                    <p class="text-muted mb-0">{{ factura.observacion }}</p>
+
+                </td>
+                <td>
+
+                    <table class="table table-borderless" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of factura.items">
+                                <td class="th-lg height:5%">{{ item.producto.nombre }}</td>
+                                <td class="th-sm my-2">{{ item.cantidad }}</td>
+                                <td class="th-sm my-2">{{ item.importe }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <div class="ms-3">
+                                        <p class="fw-bold mb-1 text-left"> Gran Total: {{ factura.total }}  </p>
+                                    </div>    
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+               <!--     <div class="form-group row">
+                            <h5 class="fw-bold mb-1">Productos</h5>
+                            <ul *ngFor="let item of factura.items">
+                                <li class="page-item" style="list-style-type: none;"> {{ item.producto.nombre }} </li>
+                            </ul>
+                    </div>-->
+                </td>
+                <td style="width: 10px;">
+                  <button class="btn btn-success btn-sm" (click)="update(factura, 'DEPACHADO')">Despachado</button>
+                </td>
+                <td style="width: 10px;">
+                    <button class="btn btn-danger btn-sm" (click)="update(factura, 'CANCELADO')">Cancelado</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <!--<paginator-nav *ngIf="paginador" [paginador]="paginador"></paginator-nav>-->
+    </div>
+  </div>
+  
+
+
+
+

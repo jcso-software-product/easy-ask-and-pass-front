@@ -1,0 +1,9 @@
+
+.bg-img {
+    position: fixed;
+    height: 80%;
+    width: 80%;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: -1;
+}

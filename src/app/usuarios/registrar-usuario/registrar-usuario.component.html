@@ -1,0 +1,105 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+    <li *ngFor="let err of errores">
+      {{ err }}
+    </li>
+  </ul>
+  
+  <div class="card bg-dark text-white">
+    <div class="card-header">{{ titulo }}</div>
+    <div class="card-body">
+  
+      <form #clienteForm="ngForm">
+
+
+          
+        <div class="form-group row">
+            <label for="username" class="col-form-label col-sm-2">Usuario</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="usuario.username" name="username" #username="ngModel"> <!-- required -->
+              <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+                <div *ngIf="username.errors.required">
+                  El usuario es requerido
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="password" class="col-form-label col-sm-2">Contraseña</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" [(ngModel)]="usuario.password" name="password" #password="ngModel"> <!-- required -->
+              <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors.required">
+                  La contraseña es requerido
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        <div class="form-group row">
+          <label for="identificacion" class="col-form-label col-sm-2">Identificación</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="usuario.identificacion" name="identificacion" #identificacion="ngModel"> <!-- required -->
+            <div class="alert alert-danger" *ngIf="identificacion.invalid && (identificacion.dirty || identificacion.touched)">
+              <div *ngIf="identificacion.errors.required">
+                La identificacion es requerida
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel"> <!-- required minlength="4" -->
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                El nombre es requerido
+              </div>
+              <div *ngIf="nombre.errors.minlength">
+                Nombre debe tener al menos 4 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="usuario.apellido" name="apellido" #apellido="ngModel"> <!-- required -->
+            <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+              <div *ngIf="apellido.errors.required">
+                El apellido es requerido
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="email" class="col-form-label col-sm-2">Email</label>
+          <div class="col-sm-6">
+            <input type="email" class="form-control" [(ngModel)]="usuario.email" name="email" #email="ngModel"> <!-- required email -->
+            <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="email.errors.required">
+                Email es requerido
+              </div>
+              <div *ngIf="email.errors.email">
+                Email debe tener un formato válido
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary" role="button" (click)='create()'>Crear</button>
+            <button class="btn btn-secondary" role="button" (click)='volver()'>Regresar</button>
+          </div>
+        </div>
+      </form>
+  
+    </div>
+  </div>
+  

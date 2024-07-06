@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"> <!--{{ title }}-->
+    <img class="d-inline-block align-text-top" src="assets/img/easy-logo.png" width="90" height="50">
+  </a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngIf="authService.hasRole('ROLE_USER')"0>
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="authService.hasRole('ROLE_USER')">
+        <a class="nav-link" routerLink="/clientes/identificacion">Solicitar Pedidos</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="authService.hasRole('ROLE_ADMIN')">
+        <a class="nav-link" routerLink="/pedidos">Pedidos</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="authService.hasRole('ROLE_ADMIN')">
+        <a class="nav-link" [routerLink]="['/productos']">Productos</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="authService.hasRole('ROLE_ADMIN')">
+        <a class="nav-link" [routerLink]="['/clientes']">Estudiantes</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()" class="nav-item" routerLinkActive="active">
+        <button type="submit" class="btn btn-outline-primary" (click)="logout()">Salir</button>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right">
+      <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Ingresar</a></li>
+      <li *ngIf="authService.isAuthenticated()" class="dropdown">
+        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{authService.usuario.username}}
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <button (click)="logout()" class="dropdown-item" type="submit">Sign Out</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
